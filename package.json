@@ -1,0 +1,23 @@
+{
+  "name": "alicemq-test-suite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudataguy/alicemq-test-suite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yudataguy/alicemq-test-suite/issues"
+  },
+  "homepage": "https://github.com/yudataguy/alicemq-test-suite#readme",
+  "dependencies": {
+    "amqplib": "^0.5.3",
+    "dotenv": "^7.0.0"
+  }
+}
