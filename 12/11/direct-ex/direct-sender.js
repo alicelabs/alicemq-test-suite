@@ -13,22 +13,21 @@ let window = 200;
 amqp.connect(uri, function(err, conn) {
   conn.createChannel(function(err, ch) {
 
-    var binding = ['cyan', 'orange'] 
+    var binding = ['cyan', 'orange']
+ 
   // queue.name - options
     ch.assertQueue('cyan', {})
-    ch.deleteExchange('amq.direct')
-  //   setInterval(()=>{
+    setInterval(()=>{
 
-  //     for (let i = 0; i < loopItterations; i++){
-  //       // let oneOrZero = (i % 2)
-  //       //ex - binding - message
-  //       ch.publish('amq.direct', 'cyan',  new Buffer.from(`${i}`));
+      for (let i = 0; i < loopItterations; i++){
+        // let oneOrZero = (i % 2)
+        //ex - binding - message
+        ch.publish('amq.direct', 'cyan',  new Buffer.from(`${i}`));
 
-  //     }
-  //     console.log(" [x] Sent %s: '%s'", 'cyan', 'sent');
-  //   }, window)    
-  // });
+      }
+      console.log(" [x] Sent %s: '%s'", 'cyan', 'sent');
+    }, window)    
+  });
 
   // setTimeout(function() { conn.close(); process.exit(0) }, 500);
-});
 }); 
