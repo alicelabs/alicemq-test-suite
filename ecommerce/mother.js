@@ -1,15 +1,25 @@
-const fanoutReceiver = require('../12/11/fanout-ex/fanout-receiver.js') 
-const fanoutSender = require('../12/11/fanout-ex/fanout-sender')
-const topicReceiver = require('../12/11/topic-ex/topic-receiver')
-const topicSender = require('../12/11/topic-ex/topic-sender')
-const topicReceiver2 = require('/Users/parker/Documents/codesmith/alice/alicemq-test-suite/11/topic-ex/topic-reciever3.js')
+const fanoutReceiver = require('./fanout-ex/fanout-receiver') 
+const fanoutSender = require('./fanout-ex/fanout-sender')
+const topicReceiver = require('./topic-ex/topic-receiver')
+const topicSender = require('./topic-ex/topic-sender')
+const topicReceiver3 = require('./topic-ex/topic-reciever3')
+const directSender = require('./direct-ex/direct-sender')
+const directReceiver = require('./direct-ex/direct-receiver')
+const defaultSender = require('./default-ex/default-sender')
+const defaultReceiver = require('./default-ex/default-receiver')
 
-fanoutReceiver.connectToRabbit();
-fanoutSender.connectToRabbit();
+
+fanoutSender.run();
+fanoutReceiver.run();
+
+directSender.run();
+directReceiver.run();
+
 topicSender.run();
-// topicReceiver.run();
-topicReceiver2.run();
+topicReceiver.run();
 
+defaultSender.run()
+defaultReceiver.run()
 
 
 

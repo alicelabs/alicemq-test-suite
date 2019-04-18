@@ -8,10 +8,10 @@ const uri = process.env.URI;
 
 const script = {}
 
-script.connectToRabbit = () => {
+script.run = () => {
 
   const q = 'id557'; //queue name
-  const loopItterations = 200;
+  const loopItterations = 100;
   const window = 200;
   const type = 'fanout';
   const msg = 'hello i m pk'
@@ -20,10 +20,10 @@ script.connectToRabbit = () => {
   
   amqp.connect(uri, (err, conn) => {
     conn.createChannel((err, ch) => {
-      ch.assertExchange(ex, 'fanout', {durable: true});
+      ch.assertExchange(ex, 'fanout');
       setInterval(()=> {
-        for (let i = 0 ; i < 5000; i++){     
-          ch.publish('amq.fanout', 'successful_txn', new Buffer.from(msg));
+        for (let i = 0 ; i < loopItterations; i++){     
+          ch.publish('amq.fanout', 'successful_txn', new Buffer.from(msg), {persistent: false});
           console.log('sending');
         }
       }, window)

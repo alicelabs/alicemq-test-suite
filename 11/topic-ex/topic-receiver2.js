@@ -1,18 +1,17 @@
 const amqp = require('amqplib/callback_api');
 const dotenv = require('dotenv').config();
-const uri = process.env.URI
+const uri = 'amqp://test:test@192.168.0.236:5672'
 
 
 //Receive messages on default exchange
 
-const ex = 'topic'
+const ex = 'amq.topic'
 const queue = 'inventory' //queue name
 
 
 amqp.connect(uri, (err, conn) => {
   conn.createChannel((err, ch) => {
-    ch.assertExchange(ex, 'topic', {durable: false})
-    ch.assertQueue(queue, {exclusive: false}, function(err, q) {
+    ch.assertQueue(queue, {durable: false}, function(err, q) {
       if (err) {
         console.log(err)
       }
@@ -20,7 +19,7 @@ amqp.connect(uri, (err, conn) => {
       ch.bindQueue(q.queue, ex, '*.c')
       ch.consume(q.queue, function(msg) {
       console.log(" .-. >>", msg.content.toString());
-  }, {noAck: true});
+  }, {noAck: false});
 
     })
     // ch.assertQueue(q, {durable: true}); // not durable/presistent message
