@@ -7,14 +7,13 @@ const uri = process.env.URI
 const script = {}
 
 script.run = () => {
-  const ex = 'topic'
-  const queue = 'items page' //queue name
+  const ex = 'amq.topic'
+  const queue = 'items_page' //queue name
   
   
   amqp.connect(uri, (err, conn) => {
     conn.createChannel((err, ch) => {
-      ch.assertExchange(ex, 'topic', {durable: true})
-      ch.assertQueue(queue, {exclusive: true}, function(err, q) {
+      ch.assertQueue(queue, {durable: false}, function(err, q) {
         if (err) {
           console.log(err)
         }
